@@ -12,7 +12,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            PasteleriaKotlinTheme { // <-- ¡CORREGIDO!
+            PasteleriaKotlinTheme {
                 NavegacionApp()
             }
         }

@@ -5,7 +5,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.RowScope.weight
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -40,10 +39,6 @@ import com.example.pasteleriakotlin.datos.DatosEjemplo
 import com.example.pasteleriakotlin.datos.Producto
 import com.example.pasteleriakotlin.navegacion.RUTA_CATALOGO
 import com.example.pasteleriakotlin.ui.viewModel.CarritoViewModel
-import kotlin.text.all
-import kotlin.text.format
-import kotlin.text.isDigit
-import kotlin.text.toIntOrNull
 
 @Composable
 fun CatalogoScreen(
@@ -71,7 +66,7 @@ fun CatalogoScreen(
         ) {
             val listaProductos = DatosEjemplo.catalogoProductos
             items(listaProductos) { producto ->
-                ProductoCard( // <-- ESTE COMPOSABLE HA SIDO MODIFICADO
+                ProductoCard(
                     producto = producto,
                     onAgregarClick = { cantidad ->
                         carritoViewModel.agregarAlCarrito(producto, cantidad)
@@ -82,10 +77,7 @@ fun CatalogoScreen(
     }
 }
 
-/**
- * Composable para mostrar un solo producto en el catálogo.
- * (ACTUALIZADO CON IMAGEN)
- */
+
 @Composable
 fun ProductoCard(
     producto: Producto,
@@ -98,20 +90,20 @@ fun ProductoCard(
         modifier = Modifier.fillMaxWidth(),
         elevation = CardDefaults.cardElevation(4.dp)
     ) {
-        Column { // <-- Quitamos el padding de aquí para que la imagen ocupe todo el ancho
+        Column {
 
-            // --- INICIO: IMAGEN AÑADIDA ---
+
             Image(
-                painter = painterResource(id = producto.imagen), // Usa el ID de la imagen
+                painter = painterResource(id = producto.imagen),
                 contentDescription = producto.nombre,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(180.dp), // Damos una altura fija a la imagen
-                contentScale = ContentScale.Crop // Escala la imagen para que cubra el espacio
+                    .height(180.dp),
+                contentScale = ContentScale.Crop
             )
-            // --- FIN: IMAGEN AÑADIDA ---
 
-            // Columna para el texto y botones (con el padding que quitamos)
+
+
             Column(
                 modifier = Modifier.padding(16.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
@@ -122,7 +114,7 @@ fun ProductoCard(
                     style = MaterialTheme.typography.bodyLarge
                 )
 
-                // Fila para el selector de cantidad y el botón
+
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically,

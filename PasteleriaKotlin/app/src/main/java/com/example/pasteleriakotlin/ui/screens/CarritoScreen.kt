@@ -3,9 +3,7 @@ package com.example.pasteleriakotlin.ui.screens
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope.weight
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.RowScope.weight
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -36,14 +34,13 @@ import com.example.pasteleriakotlin.datos.ItemCarrito
 import com.example.pasteleriakotlin.navegacion.RUTA_BOLETA
 import com.example.pasteleriakotlin.navegacion.RUTA_CARRITO
 import com.example.pasteleriakotlin.ui.viewModel.CarritoViewModel
-import kotlin.text.format
 
 @Composable
 fun CarritoScreen(
     navController: NavController,
     carritoViewModel: CarritoViewModel = viewModel()
 ) {
-    // Observamos los items y el total del ViewModel
+
     val itemsEnCarrito by carritoViewModel.items
     val total by carritoViewModel.total
 
@@ -56,7 +53,7 @@ fun CarritoScreen(
             )
         },
         bottomBar = {
-            // Reutilizamos la barra de navegación
+
             BottomNavigationBar(navController = navController, currentRoute = RUTA_CARRITO)
         }
     ) { innerPadding ->
@@ -66,7 +63,7 @@ fun CarritoScreen(
                 .padding(innerPadding)
                 .padding(16.dp)
         ) {
-            // Si el carrito está vacío, muestra un mensaje
+
             if (itemsEnCarrito.isEmpty()) {
                 Box(
                     modifier = Modifier.fillMaxSize(),
@@ -75,16 +72,16 @@ fun CarritoScreen(
                     Text("Tu carrito está vacío")
                 }
             } else {
-                // --- Lista de Productos ---
+
                 LazyColumn(
-                    modifier = Modifier.weight(1f), // Ocupa todo el espacio menos el total
+                    modifier = Modifier.weight(1f),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     items(itemsEnCarrito) { item ->
                         ItemCarritoCard(
                             item = item,
                             onEliminarClick = {
-                                // Llama al ViewModel para eliminar
+
                                 carritoViewModel.eliminarDelCarrito(item)
                             }
                         )
@@ -93,11 +90,11 @@ fun CarritoScreen(
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                // --- Total y Botón de Pagar ---
+
                 HorizontalDivider()
                 Spacer(modifier = Modifier.height(16.dp))
 
-                // Muestra el total
+
                 Text(
                     "Total: $${"%.0f".format(total)}",
                     style = MaterialTheme.typography.headlineMedium,
@@ -108,7 +105,7 @@ fun CarritoScreen(
 
                 Button(
                     onClick = {
-                        // Navegar a la pantalla de Boleta
+
                         navController.navigate(RUTA_BOLETA)
                     },
                     modifier = Modifier.fillMaxWidth()
@@ -120,9 +117,7 @@ fun CarritoScreen(
     }
 }
 
-/**
- * Composable para mostrar un solo item en la lista del carrito.
- */
+
 @Composable
 fun ItemCarritoCard(item: ItemCarrito, onEliminarClick: () -> Unit) {
     Card(
@@ -137,11 +132,7 @@ fun ItemCarritoCard(item: ItemCarrito, onEliminarClick: () -> Unit) {
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Column(modifier = Modifier.weight(1f)) { // Columna para texto
-                Text(
-                    item.producto.nombre,
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold
-                )
+                Text(item.producto.nombre, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
                 Text("Cantidad: ${item.cantidad}", style = MaterialTheme.typography.bodyMedium)
                 Text(
                     "Subtotal: $${"%.0f".format(item.producto.precio * item.cantidad)}",
@@ -149,13 +140,9 @@ fun ItemCarritoCard(item: ItemCarrito, onEliminarClick: () -> Unit) {
                 )
             }
 
-            // Botón para eliminar
+
             IconButton(onClick = onEliminarClick) {
-                Icon(
-                    Icons.Filled.Delete,
-                    contentDescription = "Eliminar",
-                    tint = MaterialTheme.colorScheme.error
-                )
+                Icon(Icons.Filled.Delete, contentDescription = "Eliminar", tint = MaterialTheme.colorScheme.error)
             }
         }
     }

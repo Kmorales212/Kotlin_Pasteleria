@@ -22,20 +22,20 @@ import com.example.pasteleriakotlin.navegacion.RUTA_CONTACTO
 fun ContactoScreen(navController: NavController) {
     Scaffold(
         bottomBar = {
-            // Pasamos "Contacto" como la ruta seleccionada
+
             BottomNavigationBar(navController = navController, currentRoute = RUTA_CONTACTO)
         }
     ) { innerPadding ->
-        // Contenido de la pantalla
+
         Box(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
                 .padding(16.dp),
-            contentAlignment = Alignment.TopCenter // Alineamos arriba
+            contentAlignment = Alignment.TopCenter
         ) {
             Column(
-                horizontalAlignment = Alignment.Start, // Alineamos texto a la izquierda
+                horizontalAlignment = Alignment.Start,
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 Text(
@@ -45,7 +45,7 @@ fun ContactoScreen(navController: NavController) {
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                // Sucursal 1
+
                 Text(
                     "Sucursal Centro",
                     style = MaterialTheme.typography.titleLarge,
@@ -56,7 +56,7 @@ fun ContactoScreen(navController: NavController) {
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                // Sucursal 2
+
                 Text(
                     "Sucursal Oriente",
                     style = MaterialTheme.typography.titleLarge,
@@ -67,7 +67,7 @@ fun ContactoScreen(navController: NavController) {
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                // Sucursal 3
+
                 Text(
                     "Sucursal Poniente",
                     style = MaterialTheme.typography.titleLarge,

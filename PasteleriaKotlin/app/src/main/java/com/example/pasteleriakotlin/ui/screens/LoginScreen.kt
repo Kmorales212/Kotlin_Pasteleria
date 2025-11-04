@@ -1,4 +1,4 @@
-package com.example.pasteleriakotlin.ui.screens // <-- Asumiendo que 'screens' está en 'ui'
+package com.example.pasteleriakotlin.ui.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -22,10 +22,8 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import androidx.navigation.NavOptionsBuilder
-import androidx.navigation.PopUpToBuilder
 
-// --- IMPORTACIONES CORREGIDAS ---
+
 import com.example.pasteleriakotlin.navegacion.RUTA_HOME
 import com.example.pasteleriakotlin.navegacion.RUTA_LOGIN
 import com.example.pasteleriakotlin.navegacion.RUTA_REGISTRO
@@ -35,7 +33,7 @@ import com.example.pasteleriakotlin.ui.viewModel.AuthViewModel
 @Composable
 fun LoginScreen(navController: NavController, authViewModel: AuthViewModel = viewModel()) {
 
-    // Estados para guardar lo que el usuario escribe
+
     var email by remember { mutableStateOf("") }
     var contrasena by remember { mutableStateOf("") }
     var errorLogin by remember { mutableStateOf(false) }
@@ -65,7 +63,7 @@ fun LoginScreen(navController: NavController, authViewModel: AuthViewModel = vie
             onValueChange = { contrasena = it },
             label = { Text("Contraseña") },
             singleLine = true,
-            visualTransformation = PasswordVisualTransformation() // Oculta la contraseña
+            visualTransformation = PasswordVisualTransformation()
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -79,16 +77,16 @@ fun LoginScreen(navController: NavController, authViewModel: AuthViewModel = vie
         }
 
         Button(onClick = {
-            // Lógica de inicio de sesión
+
             if (authViewModel.login(email, contrasena)) {
-                // Si el login es exitoso, navegar a Home
+
                 errorLogin = false
                 navController.navigate(RUTA_HOME) {
-                    // Limpia la pila de navegación para que el usuario no pueda "volver" al login
-                    NavOptionsBuilder.popUpTo(RUTA_LOGIN) { PopUpToBuilder.inclusive = true }
+
+                    popUpTo(RUTA_LOGIN) { inclusive = true }
                 }
             } else {
-                // Si falla, mostrar error
+
                 errorLogin = true
             }
         }) {
@@ -98,7 +96,7 @@ fun LoginScreen(navController: NavController, authViewModel: AuthViewModel = vie
         Spacer(modifier = Modifier.height(8.dp))
 
         TextButton(onClick = {
-            // Navegar a la pantalla de registro
+
             navController.navigate(RUTA_REGISTRO)
         }) {
             Text("¿No tienes cuenta? Regístrate")

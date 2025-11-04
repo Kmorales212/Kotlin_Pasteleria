@@ -1,6 +1,6 @@
 package com.example.pasteleriakotlin.datos
 
-import com.example.pasteleriakotlin.R // <-- 1. AÑADE ESTA IMPORTACIÓN (La "R" de Recursos)
+import com.example.pasteleriakotlin.R
 
 object DatosEjemplo {
 
@@ -9,31 +9,31 @@ object DatosEjemplo {
             id = 1,
             nombre = "Pastel de Chocolate",
             precio = 15000.0,
-            imagen = R.drawable.pastel_chocolate // <-- 2. AÑADE ESTA LÍNEA (usa tu nombre de archivo)
+            imagen = R.drawable.pastel_chocolate
         ),
         Producto(
             id = 2,
             nombre = "Pastel de Fresa",
             precio = 17000.0,
-            imagen = R.drawable.pastel_fresa // <-- AÑADE ESTA LÍNEA
+            imagen = R.drawable.pastel_fresa
         ),
         Producto(
             id = 3,
             nombre = "Torta de Mil Hojas",
             precio = 18000.0,
-            imagen = R.drawable.torta_milhoja // <-- AÑADE ESTA LÍNEA
+            imagen = R.drawable.torta_milhoja
         ),
         Producto(
             id = 4,
             nombre = "Kuchen de Manzana",
             precio = 12000.0,
-            imagen = R.drawable.kuchen_de_manzana // <-- AÑADE ESTA LÍNEA
+            imagen = R.drawable.kuchen_de_manzana
         ),
         Producto(
             id = 5,
             nombre = "Torta Selva Negra",
             precio = 20000.0,
-            imagen = R.drawable.selva_negra // <-- AÑADE ESTA LÍNEA
+            imagen = R.drawable.selva_negra
         )
     )
 }
